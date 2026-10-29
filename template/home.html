@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Groupie Tracker</title>
+</head>
+<body>
+    <h1>Nos Artistes</h1>
+    {{range .}}
+    <div>
+        <h2>{{.Nom}}</h2>
+        <p>Membres{{.Membres}}</p>
+    </div>
+    {{end}}
+</body>
+</html>

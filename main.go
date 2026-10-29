@@ -1,17 +1,26 @@
 package main
 
-import(
+import (
 	"fmt"
 	"groupie-tracker/api"
 	"groupie-tracker/models"
+	"html/template"
 	"net/http"
 )
 
 var artists []models.Artist
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-	for _, a := range artists {
-		fmt.Fprintln(w, a.Membres)
+	tmpl, err := template.ParseFiles("template/home.html")
+	if err != nil {
+		fmt.Println("Erreur de chargement du template :", err)
+		http.Error(w, "Erreur interne", http.StatusInternalServerError)
+		return
+	}
+	err = tmpl.Execute(w, artists)
+	if err != nil {
+		fmt.Println("Erreur de chargement du template :", err)
+		http.Error(w, "Erreur interne", http.StatusInternalServerError)
 	}
 }
 

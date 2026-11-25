@@ -10,6 +10,13 @@
 </head>
 
 <body>
+    <form action="/" method="GET">
+        <input type="text" name="q" placeholder="Rechercher un artiste">
+        <button type="submit">Rechercher</button>
+    </form>
+    <main>
+        <section class="artists-section">
+        <div class="artists-grid">
 
     {{range .}}
     <article class="artist-card" data-search="{{.Nom}} {{range .Membres}}{{.}} {{end}}">
@@ -37,15 +44,16 @@
             <div class="artist-album">
                 Premier album : {{.PremierAlbum}}
             </div>
+            <a href="/artist?id={{.Id}}">Voir le détails</a>
         </div>
 
     </article>
     {{end}}
-</div>
-
-
+    </div>
     </section>
-</main>                    
+</main>
+
+
     <footer class="site-footer">
         <a href="/" class="logo">GROUPIE<span>TRACKER.</span></a>
         <p>Une exploration de l'univers musical.</p>

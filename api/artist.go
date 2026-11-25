@@ -3,12 +3,13 @@ package api
 import (
 	"encoding/json"
 	"fmt"
-	"groupie-tracker/models"
 	"net/http"
+
+	"groupie-tracker/models"
 )
 
 func GetArtists() ([]models.Artist, error) {
-	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
+	resp, err := http.Get("https://groupietrackers.01edu.ai/api/artists")
 	if err != nil {
 		return nil, err
 	}
@@ -23,5 +24,6 @@ func GetArtists() ([]models.Artist, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	return artists, nil
 }

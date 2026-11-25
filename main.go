@@ -2,14 +2,12 @@ package main
 
 import (
 	"fmt"
-	"html/template"
-	"net/http"
-	"strconv"
-	"strings"
-
 	"groupie-tracker/api"
 	"groupie-tracker/models"
 	"groupie-tracker/utils"
+	"html/template"
+	"net/http"
+	"strconv"
 )
 
 var artists []models.Artist
@@ -67,7 +65,10 @@ func artistHandler(w http.ResponseWriter, r *http.Request) {
 			}
 
 			tmpl := template.New("artist.html")
-			tmpl.Funcs(template.FuncMap{"formatLieu": utils.FormatLocation})
+			tmpl.Funcs(template.FuncMap{
+				"formatLieu": utils.FormatLocation,
+			})
+
 			tmpl, err = tmpl.ParseFiles("templates/artist.html")
 			if err != nil {
 				fmt.Println("Erreur de chargement du template artist :", err)
@@ -113,11 +114,13 @@ func main() {
 		return
 	}
 
-	http.HandleFunc("/", homeHandler)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("Frontend/static"))))
 	http.HandleFunc("/artist", artistHandler)
+	http.HandleFunc("/", homeHandler)
 
-	fmt.Println("Serveur lancé sur http://localhost:8080")
-	err = http.ListenAndServe(":8080", nil)
+	fmt.Println("Serveur lancé sur http://localhost:8081")
+
+	err = http.ListenAndServe(":8081", nil)
 	if err != nil {
 		fmt.Println("Erreur :", err)
 	}

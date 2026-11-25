@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>{{.Artist.Nom}}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
-    <h1>{{.Artist.Nom}}</h1>
-    <img src="{{.Artist.Image}}" alt="Photo de {{.Artist.Nom}}">
-    <p>Début d'activité : {{.Artist.CreationDate}}</p>
-    <p>Premier album : {{.Artist.PremierAlbum}}</p>
+    <header class="site-header">
+        <a href="/" class="logo">GROUPIE<span>TRACKER.</span></a>
+    </header>
+    <main>
+        <section class="detail-hero">
+        <div class="detail-image"><img src="{{.Artist.Image}}" alt="Photo de {{.Artist.Nom}}"></div>
+        <div class="detail-info">
+            <h1>{{.Artist.Nom}}</h1>
+            <p>Début d'activité : {{.Artist.CreationDate}}</p>
+            <p>Premier album : {{.Artist.PremierAlbum}}</p>
+        </div>
+        </section>
 
     <h2>Membres</h2>
     <ul>
@@ -27,5 +36,11 @@
     </ul>
 
     <a href="/">Retour à la liste</a>
+    </main>
+    <footer class="site-footer">
+        <a href="/" class="logo">GROUPIE<span>TRACKER.</span></a>
+        <p>Une exploration de l'univers musical.</p>
+        <p class="copyright">© 2026 — Projet étudiant</p>
+    </footer>
 </body>
 </html>

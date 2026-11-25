@@ -564,3 +564,10 @@ main {
     color: #aaa8b8;
     font-size: 12px;
 }
+
+.detail-hero {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 32px;
+    align-items: center;
+}

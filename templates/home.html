@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Nos artistes</h1>
+    <form action="/" method="GET">
+        <input type="text" name="q" placeholder="Rechercher un artiste">
+        <button type="submit">Rechercher</button>
+    </form>
     {{range .}}
         <div>
             <h2>{{.Nom}}</h2>

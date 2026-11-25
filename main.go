@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"groupie-tracker/api"
 	"groupie-tracker/models"
@@ -27,6 +28,13 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	recherche := r.URL.Query().Get("q")
+	var resultats []models.Artist
+	for _, a := range artists {
+		if strings.Contains(strings.ToLower(a.Nom), strings.ToLower(recherche)) {
+			resultats = append(resultats, a)
+		}
+	}
 	tmpl, err := template.ParseFiles("templates/home.html")
 	if err != nil {
 		fmt.Println("Erreur de chargement du template home :", err)
@@ -34,7 +42,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = tmpl.Execute(w, artists)
+	err = tmpl.Execute(w, resultats)
 	if err != nil {
 		fmt.Println("Erreur d'exécution du template home :", err)
 	}

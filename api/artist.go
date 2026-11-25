@@ -8,7 +8,7 @@ import (
 )
 
 func GetArtists() ([]models.Artist, error) {
-	resp, err := http.Get("https://groupietrackers.herokuapp.com/api/artists")
+	resp, err := http.Get("https://groupietrackers.01edu.ai/api/artists")
 	if err != nil {
 		return nil, err
 	}

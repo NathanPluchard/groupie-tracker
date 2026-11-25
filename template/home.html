@@ -1,16 +1,125 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Groupie Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101018">
+    <title>Groupie Tracker | Music Discovery</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
-    <h1>Nos Artistes</h1>
+
+    <header class="site-header">
+        <a href="/" class="logo">
+            GROUPIE<span>TRACKER.</span>
+        </a>
+
+        <nav>
+            <a href="/" class="active">Accueil</a>
+            <a href="#artistes">Artistes</a>
+        </nav>
+
+        <div class="header-tag">MUSIC DISCOVERY</div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow">TON UNIVERS MUSICAL COMMENCE ICI</span>
+
+                <h1>
+                    Explore la musique.<br>
+                    <span>Découvre les légendes.</span>
+                </h1>
+
+                <p>
+                    Des groupes mythiques aux artistes incontournables,
+                    explore leurs histoires, leurs membres et leurs concerts.
+                </p>
+
+                <a href="#artistes" class="hero-button">
+                    Explorer les artistes <span>↗</span>
+                </a>
+            </div>
+
+            <div class="hero-decoration">
+                <div class="sound-circle">♫</div>
+                <span>DISCOVER · EXPLORE · LISTEN</span>
+            </div>
+        </section>
+
+        <section class="artists-section" id="artistes">
+
+            <div class="section-top">
+                <div>
+                    <span class="eyebrow">LA COLLECTION</span>
+                    <h2>Nos artistes<span>.</span></h2>
+                    <p class="section-description">
+                        Retrouve les artistes qui ont marqué l'histoire musicale.
+                    </p>
+                </div>
+
+                <div class="collection-label">
+                    <span class="status-dot"></span>
+                    Collection musicale
+                </div>
+            </div>
+          <div class="search-container">
+    <input
+        type="search"
+        id="searchInput"
+        placeholder="Rechercher un artiste ou un membre..."
+        autocomplete="off"
+    >
+    <span class="search-icon">⌕</span>
+</div>
+
+<p id="resultCount" class="result-count"></p>
+            
+<div class="artists-grid">
     {{range .}}
-    <div>
-        <h2>{{.Nom}}</h2>
-        <p>Membres{{.Membres}}</p>
-    </div>
+    <article class="artist-card" data-search="{{.Nom}} {{range .Membres}}{{.}} {{end}}">
+
+        <div class="artist-image">
+            {{if .Image}}
+            <img src="{{.Image}}" alt="Photo de {{.Nom}}" loading="lazy">
+            {{else}}
+            <div class="image-placeholder">♫</div>
+            {{end}}
+
+            <span class="artist-number">#{{.Id}}</span>
+        </div>
+
+        <div class="artist-info">
+            <span class="artist-category">ARTISTE / GROUPE</span>
+
+            <h3>{{.Nom}}</h3>
+
+            <div class="artist-details">
+                <span>Depuis {{.CreationDate}}</span>
+                <span>{{len .Membres}} membres</span>
+            </div>
+
+            <div class="artist-album">
+                Premier album : {{.PremierAlbum}}
+            </div>
+        </div>
+
+    </article>
     {{end}}
+</div>
+
+
+    </section>
+</main>                    
+    <footer class="site-footer">
+        <a href="/" class="logo">GROUPIE<span>TRACKER.</span></a>
+        <p>Une exploration de l'univers musical.</p>
+        <p class="copyright">© 2026 — Projet étudiant</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
 </body>
 </html>

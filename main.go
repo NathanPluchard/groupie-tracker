@@ -16,7 +16,9 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Erreur de chargement du template :", err)
 		http.Error(w, "Erreur interne", http.StatusInternalServerError)
 		return
+
 	}
+
 	err = tmpl.Execute(w, artists)
 	if err != nil {
 		fmt.Println("Erreur de chargement du template :", err)
@@ -32,7 +34,8 @@ func main() {
 		return
 	}
 
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("Frontend/static"))))
 	http.HandleFunc("/", homeHandler)
-	fmt.Println("Serveur lancé sur http://localhost:8080")
-	http.ListenAndServe(":8080", nil)
+	fmt.Println("Serveur lancé sur http://localhost:8081")
+	http.ListenAndServe(":8081", nil)
 }
